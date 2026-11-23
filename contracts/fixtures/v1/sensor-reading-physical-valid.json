@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "readingId": "boot-a-42",
+  "deviceId": "smart-agri-physical-01",
+  "dataSource": "PHYSICAL",
+  "bootId": "boot-a",
+  "sequence": 42,
+  "measuredAtEpochMs": 1774320000000,
+  "receivedAtEpochMs": 1774320001200,
+  "timeQuality": "SYNCED",
+  "soilMoistureRaw": 2380,
+  "normalizedMoisturePercent": 47.5,
+  "airTemperatureC": 26.4,
+  "airHumidityPercent": 58.2,
+  "calibrationVersion": "soil-cal-v1",
+  "sensorStatus": "OK",
+  "firmwareVersion": "0.1.0"
+}

@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://smart-agri.local/schemas/sensor-reading-v1.schema.json",
+  "title": "Smart Agri SensorReading v1",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "schemaVersion", "readingId", "deviceId", "dataSource", "bootId",
+    "sequence", "measuredAtEpochMs", "receivedAtEpochMs", "timeQuality",
+    "soilMoistureRaw", "sensorStatus", "firmwareVersion"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "readingId": { "type": "string", "minLength": 1 },
+    "deviceId": { "type": "string", "minLength": 1 },
+    "dataSource": { "enum": ["PHYSICAL", "SIMULATED"] },
+    "bootId": { "type": "string", "minLength": 1 },
+    "sequence": { "type": "integer", "minimum": 0 },
+    "measuredAtEpochMs": { "type": "integer", "minimum": 1 },
+    "receivedAtEpochMs": { "type": "integer", "minimum": 1 },
+    "timeQuality": { "enum": ["SYNCED", "UNSYNCED"] },
+    "soilMoistureRaw": { "type": "integer", "minimum": 0, "maximum": 4095 },
+    "normalizedMoisturePercent": { "type": "number", "minimum": 0, "maximum": 100 },
+    "airTemperatureC": { "type": "number", "minimum": -40, "maximum": 80 },
+    "airHumidityPercent": { "type": "number", "minimum": 0, "maximum": 100 },
+    "calibrationVersion": { "type": "string", "minLength": 1 },
+    "sensorStatus": { "enum": ["OK", "PARTIAL", "ERROR"] },
+    "firmwareVersion": { "type": "string", "minLength": 1 },
+    "errorCodes": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": { "const": true }
+    },
+    "simulator": { "const": "WOKWI" }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "dataSource": { "const": "SIMULATED" } } },
+      "then": { "required": ["simulator"] },
+      "else": { "not": { "required": ["simulator"] } }
+    },
+    {
+      "if": { "required": ["normalizedMoisturePercent"] },
+      "then": { "required": ["calibrationVersion"] }
+    }
+  ]
+}

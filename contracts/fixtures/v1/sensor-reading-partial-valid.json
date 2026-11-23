@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "readingId": "boot-a-43",
+  "deviceId": "smart-agri-physical-01",
+  "dataSource": "PHYSICAL",
+  "bootId": "boot-a",
+  "sequence": 43,
+  "measuredAtEpochMs": 1774320120000,
+  "receivedAtEpochMs": 1774320121100,
+  "timeQuality": "SYNCED",
+  "soilMoistureRaw": 2401,
+  "normalizedMoisturePercent": 46.8,
+  "calibrationVersion": "soil-cal-v1",
+  "sensorStatus": "PARTIAL",
+  "firmwareVersion": "0.1.0",
+  "errorCodes": {
+    "DHT_READ_FAILED": true
+  }
+}

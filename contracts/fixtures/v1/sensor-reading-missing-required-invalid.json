@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "readingId": "missing-device-id",
+  "dataSource": "PHYSICAL",
+  "bootId": "boot-a",
+  "sequence": 44,
+  "measuredAtEpochMs": 1774320180000,
+  "receivedAtEpochMs": 1774320181000,
+  "timeQuality": "SYNCED",
+  "soilMoistureRaw": 2300,
+  "sensorStatus": "OK",
+  "firmwareVersion": "0.1.0"
+}

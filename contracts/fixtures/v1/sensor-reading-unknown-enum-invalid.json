@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "readingId": "unknown-source-1",
+  "deviceId": "smart-agri-physical-01",
+  "dataSource": "LAB_DEVICE",
+  "bootId": "boot-a",
+  "sequence": 45,
+  "measuredAtEpochMs": 1774320240000,
+  "receivedAtEpochMs": 1774320241000,
+  "timeQuality": "SYNCED",
+  "soilMoistureRaw": 2300,
+  "sensorStatus": "OK",
+  "firmwareVersion": "0.1.0"
+}

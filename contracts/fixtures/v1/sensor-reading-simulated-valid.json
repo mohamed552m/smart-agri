@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "readingId": "wokwi-boot-7",
+  "deviceId": "smart-agri-sim-01",
+  "dataSource": "SIMULATED",
+  "bootId": "wokwi-boot",
+  "sequence": 7,
+  "measuredAtEpochMs": 1774320060000,
+  "receivedAtEpochMs": 1774320060900,
+  "timeQuality": "SYNCED",
+  "soilMoistureRaw": 2750,
+  "normalizedMoisturePercent": 35.0,
+  "airTemperatureC": 27.1,
+  "airHumidityPercent": 55.0,
+  "calibrationVersion": "wokwi-cal-v1",
+  "sensorStatus": "OK",
+  "firmwareVersion": "0.1.0-sim",
+  "simulator": "WOKWI"
+}
