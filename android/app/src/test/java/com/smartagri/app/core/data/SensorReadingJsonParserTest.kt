@@ -69,6 +69,37 @@ class SensorReadingJsonParserTest {
         assertTrue(SensorReadingJsonParser.parse(payload) is SensorReadingParseResult.Invalid)
     }
 
+    @Test
+    fun `explicit null optional values map to missing values`() {
+        val payload = fixture("sensor-reading-physical-valid.json").replace(
+            "\"airTemperatureC\": 26.4",
+            "\"airTemperatureC\": null",
+        )
+        val result = SensorReadingJsonParser.parse(payload)
+        val reading = (result as SensorReadingParseResult.Valid).reading
+        assertEquals(null, reading.airTemperatureC)
+    }
+
+    @Test
+    fun `empty error map is invalid because producers must omit it`() {
+        val result = SensorReadingJsonParser.parse(
+            fixture("sensor-reading-empty-errors-invalid.json"),
+        )
+        assertTrue(result is SensorReadingParseResult.Invalid)
+        assertTrue(
+            SensorReadingIssue.INVALID_ERROR_CODES in
+                (result as SensorReadingParseResult.Invalid).issues,
+        )
+    }
+
+    @Test
+    fun `error code arrays are invalid`() {
+        val result = SensorReadingJsonParser.parse(
+            fixture("sensor-reading-errors-array-invalid.json"),
+        )
+        assertTrue(result is SensorReadingParseResult.Invalid)
+    }
+
     private fun fixture(name: String): String =
         checkNotNull(javaClass.classLoader?.getResource(name)) { "Missing fixture $name" }.readText()
 }

@@ -17,6 +17,7 @@
 | D-011 | Hardware owner confirms the exact ESP32-WROOM-32 DevKit variant and parts. |
 | D-012 | Plant/soil owner supplies researched profile values; no universal thresholds. |
 | D-013 | Firebase Android BoM 34.14.1 is pinned because BoM 35.2.0 resolves Auth 25.0.0, whose Kotlin 2.4 metadata is incompatible with the approved Kotlin 2.2.21 compiler. The tested resolution is Auth 24.1.0 and RTDB 22.0.1. |
+| D-014 | A weather snapshot becomes stale for recommendations three hours after `fetchedAtEpochMs`; a timestamp over two minutes in the future is invalid. |
 
 Firebase version mappings are checked against the official
 [Firebase Android release notes](https://firebase.google.com/support/release-notes/android)

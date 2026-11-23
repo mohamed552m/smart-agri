@@ -84,7 +84,10 @@ object SensorReadingJsonParser {
         if (wire.normalizedMoisturePercent != null && wire.calibrationVersion.isNullOrBlank()) {
             issues += SensorReadingIssue.MISSING_CALIBRATION
         }
-        if (wire.errorCodes?.values?.any { !it } == true) {
+        if (
+            wire.errorCodes?.isEmpty() == true ||
+            wire.errorCodes?.values?.any { !it } == true
+        ) {
             issues += SensorReadingIssue.INVALID_ERROR_CODES
         }
         when (dataSource) {

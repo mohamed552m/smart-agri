@@ -118,7 +118,10 @@ placeholder remaining in a read payload is invalid.
 
 The weather owner defines API DTOs separately and maps them to this model.
 Cached weather retains `fetchedAtEpochMs`; missing or stale weather must remain
-visible and cannot silently become a valid irrigation input.
+visible and cannot silently become a valid irrigation input. Weather is stale
+for recommendation purposes when `fetchedAtEpochMs` is more than three hours
+old, and invalid when it is more than two minutes in the future. Both weather
+and recommendation implementations use the shared `WeatherFreshnessEvaluator`.
 
 ## PlantProfile
 

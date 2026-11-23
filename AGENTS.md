@@ -392,6 +392,10 @@ Rules:
 - AI cannot change, suppress, or override the deterministic result.
 - No recommendation can directly control hardware.
 
+Weather freshness is evaluated only through the shared
+`WeatherFreshnessEvaluator`: older than three hours is stale, and more than two
+minutes in the future is invalid.
+
 Do not use universal moisture thresholds. Plant and soil thresholds must come
 from an approved profile and be interpreted on the same calibrated normalized
 scale as the sensor.
@@ -449,8 +453,15 @@ gradlew assembleDebug
 ```
 
 Also verify fixture parsing, missing required/optional fields, unknown enums,
-stale/future timestamps, physical/simulated labels, Firebase permission denial,
-server timestamp deserialization, process restart, and offline display.
+stale/future timestamps, physical/simulated source identity, server timestamp
+deserialization, shared path generation, and contract/model compilation.
+
+### Android Integration Gate
+
+After the relevant implementations exist, verify Firebase permission denial,
+server timestamp mapping from a real `DataSnapshot`, process restart, offline
+display, visible physical/simulated labels, and cached-data age. These checks do
+not block merging the shared foundation before those features exist.
 
 ### ESP32 Gate
 

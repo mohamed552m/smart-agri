@@ -28,6 +28,7 @@
     "firmwareVersion": { "type": "string", "minLength": 1 },
     "errorCodes": {
       "type": "object",
+      "minProperties": 1,
       "additionalProperties": { "const": true }
     },
     "simulator": { "const": "WOKWI" }

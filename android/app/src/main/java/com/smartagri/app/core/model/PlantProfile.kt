@@ -12,10 +12,13 @@ data class PlantProfile(
 ) {
     init {
         require(profileId.isNotBlank())
+        require(plantName.isNotBlank())
+        require(soilType.isNotBlank())
         require(calibrationVersion.isNotBlank())
         require(dryThresholdPercent in 0.0..100.0)
         require(targetThresholdPercent in 0.0..100.0)
         require(dryThresholdPercent < targetThresholdPercent)
         require(significantRainThresholdMm >= 0.0)
+        require(updatedAtEpochMs > 0)
     }
 }

@@ -1,0 +1,50 @@
+name: Android Foundation
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [feature/android]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install approved Android SDK
+        run: sdkmanager "platforms;android-36" "build-tools;36.0.0"
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Validate whitespace
+        run: git diff --check origin/main...HEAD
+
+      - name: Reject tracked credential files
+        shell: bash
+        run: |
+          if git ls-files | grep -E '(^|/)(google-services\.json|secrets\.(h|properties)|service-account.*\.json|.*\.(jks|keystore|pem|key))$'; then
+            echo "A credential or private-key file is tracked."
+            exit 1
+          fi
+
+      - name: Build, lint, and unit test
+        run: |
+          chmod +x gradlew
+          ./gradlew clean lintDebug testDebugUnitTest assembleDebug
